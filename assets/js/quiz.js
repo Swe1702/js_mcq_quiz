@@ -23,6 +23,14 @@ function startQuiz() {
   startButton.classList.add('hide');
   // display the questions and answer choices
   questionContainer.style.display = 'block';
-  
-}
 
+}
+// Function to update the timer
+// Updates timer element by decrementing time variable
+function updateTimer() {
+  time--; // Decrement time variable
+  timerElement.textContent = time; // Update timer element text content with decremented time
+  if (time <= 0) { // Check if time has reached zero or negative value
+     endQuiz(); // If true, end the quiz
+  }
+ }
