@@ -23,7 +23,8 @@ function startQuiz() {
   startButton.classList.add('hide');
   // display the questions and answer choices
   questionContainer.style.display = 'block';
-
+  timer = setInterval(updateTimer, 1000); // calling updateTimer function which excutes every 1000 milli seconds or every second.
+  renderQuestion(); //calling renderQuestion function
 }
 // Function to update the timer
 // Updates timer element by decrementing time variable
@@ -34,3 +35,16 @@ function updateTimer() {
      endQuiz(); // If true, end the quiz
   }
  }
+// Function to render questions and choices
+function renderQuestion() {
+  const currentQuestion = questions[currentQuestionIndex];//The current question object is obtained from the questions array using the currentQuestionIndex.
+  document.getElementById('question-title').textContent = currentQuestion.question;//Inside the function, the current question object is obtained from the questions array using the currentQuestionIndex.
+  choiceButtons.innerHTML = '';//The choiceButtons element's innerHTML is cleared to remove any previous choice buttons.
+  currentQuestion.choices.forEach(choice => { //Next, a loop is run over the choices array of the current question object. In each iteration, a new button element is created and the current choice is set as the text content of the button.
+    const button = document.createElement('button');
+    button.textContent = choice; // the content in the choice is added to button.
+    button.classList.add('choice'); //The class 'choice' is added to the button to apply styling.
+    button.addEventListener('click', selectAnswer);//The class 'choice' is added to the button to apply styling.
+    choiceButtons.appendChild(button);//The class 'choice' is added to the button to apply styling.
+  });
+}
