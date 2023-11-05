@@ -48,3 +48,26 @@ function renderQuestion() {
     choiceButtons.appendChild(button);//The class 'choice' is added to the button to apply styling.
   });
 }
+// Function to handle answer selection
+function selectAnswer(event) {
+   const selectedButton = event.target; // stores the answer user gives
+   const correct = selectedButton.textContent === questions[currentQuestionIndex].answer; //the correvt variable stores the answer we gave in the question.
+
+  if (correct) { //if the answer is correct the score increases 10 times.
+    score = score + 10; //score increases 10 times if the answer is correct.
+    feedbackElement.textContent = 'Correct!'; // display correct
+  } else {
+    time = time - 10; //if the answer is wrong the time will be reduced 10 times.
+    feedbackElement.textContent = 'Wrong!'; //displays wrong.
+  }
+  feedbackElement.classList.remove('hide'); //the above displayed answer will hide.
+  setTimeout(() => { //this function runs for every 300 milli seconds
+    feedbackElement.classList.add('hide');
+  }, 300); 
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) { //if the question number is greater than the number of questions then this exits the function or else displays next question
+    renderQuestion();
+  } else {
+    endQuiz();
+  }
+}
