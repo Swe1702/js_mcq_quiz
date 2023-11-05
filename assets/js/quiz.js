@@ -71,3 +71,10 @@ function selectAnswer(event) {
     endQuiz();
   }
 }
+// Function to end the quiz
+function endQuiz() {
+  clearInterval(timer); //Stops the timer by clearing the interval
+  questionContainer.classList.add('hide'); //Adds the class 'hide' to the question container. This hides the current question from view by using the CSS rule .hide { display: none; }.
+  endScreen.classList.remove('hide'); //hides the end screen
+  finalScoreElement.textContent = score; // Updates the user interface by showing the user's final score, their answers to the quiz questions, and a link to start the quiz over.
+}
