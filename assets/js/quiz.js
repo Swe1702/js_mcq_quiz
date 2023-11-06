@@ -90,3 +90,15 @@ function saveHighScore() {
     console.log("Initials: " + initials + ", Score: " + time);
   }
 }
+// Event listeners
+// event listener for start button click
+startButton.addEventListener('click', startQuiz);
+// event listener for submit button click
+submitButton.addEventListener('click', saveHighScore);
+
+// // Load high scores page when "View Highscores" link is clicked
+highScoresLink.addEventListener('click', function(event) {
+  event.preventDefault(); // event.preventDefault(); stops the default form submission action, 
+                          // which is refreshing the page when a user submits a form
+  window.location.href = 'highscores.html';//// Use the extracted HTML to navigate to a different page
+});
