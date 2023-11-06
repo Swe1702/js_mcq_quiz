@@ -78,3 +78,15 @@ function endQuiz() {
   endScreen.classList.remove('hide'); //hides the end screen
   finalScoreElement.textContent = score; // Updates the user interface by showing the user's final score, their answers to the quiz questions, and a link to start the quiz over.
 }
+// Function to save high score to local storage
+function saveHighScore() {
+  const initials = initialsInput.value.trim();
+  if (initials !== '') {
+    const highScores = JSON.parse(localStorage.getItem('highscores')) || []; //// Get the current high scores from localStorage, if any.
+    const newScore = {initials,score};// Create a new high score object with the current initials and score.
+    highScores.push(newScore); //// Add the new high score to the list of high scores.
+    localStorage.setItem('highScores', JSON.stringify(highScores));//// Save the updated high scores to localStorage.
+    window.location.href = 'highscores.html'; // Redirect to high scores page
+    console.log("Initials: " + initials + ", Score: " + time);
+  }
+}
