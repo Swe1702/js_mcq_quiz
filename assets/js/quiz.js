@@ -12,7 +12,7 @@ var highScoresLink = document.querySelector('.scores a');
 var startScreen = document.getElementById('start-screen');
 // Timer and score variables
 let currentQuestionIndex = 0;
-let time = 60;
+let time = 75; //time starts from 75 seconds.
 let score = 0;
 let timer;
 // Function to start the quiz
@@ -64,7 +64,7 @@ function selectAnswer(event) {
   setTimeout(() => { //this function runs for every 300 milli seconds
     feedbackElement.classList.add('hide');
   }, 300); 
-  currentQuestionIndex++;
+  currentQuestionIndex++; //current index is increased by 1
   if (currentQuestionIndex < questions.length) { //if the question number is greater than the number of questions then this exits the function or else displays next question
     renderQuestion();
   } else {
@@ -75,30 +75,33 @@ function selectAnswer(event) {
 function endQuiz() {
   clearInterval(timer); //Stops the timer by clearing the interval
   questionContainer.classList.add('hide'); //Adds the class 'hide' to the question container. This hides the current question from view by using the CSS rule .hide { display: none; }.
+  questionContainer.style.display = 'none';
   endScreen.classList.remove('hide'); //hides the end screen
   finalScoreElement.textContent = score; // Updates the user interface by showing the user's final score, their answers to the quiz questions, and a link to start the quiz over.
 }
-// Function to save high score to local storage
-function saveHighScore() {
-  const initials = initialsInput.value.trim();
-  if (initials !== '') {
-    const highScores = JSON.parse(localStorage.getItem('highscores')) || []; //// Get the current high scores from localStorage, if any.
-    const newScore = {initials,score};// Create a new high score object with the current initials and score.
-    highScores.push(newScore); //// Add the new high score to the list of high scores.
-    localStorage.setItem('highScores', JSON.stringify(highScores));//// Save the updated high scores to localStorage.
-    window.location.href = 'highscores.html'; // Redirect to high scores page
-    console.log("Initials: " + initials + ", Score: " + time);
+  // Function to save high score to local storage
+  function saveHighScore() {
+    const initials = initialsInput.value.trim();
+    if (initials !== '') {
+      const highScores = JSON.parse(localStorage.getItem('highscores')) || []; //// Get the current high scores from localStorage, if any.
+      const newScore = {initials,score};// Create a new high score object with the current initials and score.
+      highScores.push(newScore); //// Add the new high score to the list of high scores.
+      localStorage.setItem('highScores', JSON.stringify(highScores));//// Save the updated high scores to localStorage.
+      window.location.href = 'highscores.html'; // Redirect to high scores page
+      alert("Initials: " + initials + ", Score: " + time);
+    }
   }
-}
 // Event listeners
 // event listener for start button click
 startButton.addEventListener('click', startQuiz);
 // event listener for submit button click
 submitButton.addEventListener('click', saveHighScore);
 
-// // Load high scores page when "View Highscores" link is clicked
+// Load high scores page when "View Highscores" link is clicked
 highScoresLink.addEventListener('click', function(event) {
   event.preventDefault(); // event.preventDefault(); stops the default form submission action, 
                           // which is refreshing the page when a user submits a form
   window.location.href = 'highscores.html';//// Use the extracted HTML to navigate to a different page
 });
+
+
