@@ -10,6 +10,7 @@ var submitButton = document.getElementById('submit');
 var feedbackElement = document.getElementById('feedback');
 var highScoresLink = document.querySelector('.scores a');
 var startScreen = document.getElementById('start-screen');
+
 // Timer and score variables
 let currentQuestionIndex = 0;
 let time = 75; //time starts from 75 seconds.
@@ -79,6 +80,8 @@ function endQuiz() {
   endScreen.classList.remove('hide'); //hides the end screen
   finalScoreElement.textContent = score; // Updates the user interface by showing the user's final score, their answers to the quiz questions, and a link to start the quiz over.
 }
+
+
   // Function to save high score to local storage
   function saveHighScore() {
     const initials = initialsInput.value.trim();
@@ -88,7 +91,7 @@ function endQuiz() {
       highScores.push(newScore); //// Add the new high score to the list of high scores.
       localStorage.setItem('highScores', JSON.stringify(highScores));//// Save the updated high scores to localStorage.
       window.location.href = 'highscores.html'; // Redirect to high scores page
-      alert("Initials: " + initials + ", Score: " + time);
+      console.log("Initials: " + initials + ", Score: " + time);
     }
   }
 // Event listeners
