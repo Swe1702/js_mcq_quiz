@@ -82,29 +82,24 @@ function endQuiz() {
 }
 
 
-  // Function to save high score to local storage
-  function saveHighScore() {
-    const initials = initialsInput.value.trim();
-    if (initials !== '') {
-      const highScores = JSON.parse(localStorage.getItem('highscores')) || []; //// Get the current high scores from localStorage, if any.
-      const newScore = {initials,score};// Create a new high score object with the current initials and score.
-      highScores.push(newScore); //// Add the new high score to the list of high scores.
-      localStorage.setItem('highScores', JSON.stringify(highScores));//// Save the updated high scores to localStorage.
-      window.location.href = 'highscores.html'; // Redirect to high scores page
-      console.log("Initials: " + initials + ", Score: " + time);
-    }
+// Function to save the high score in local storage
+function saveHighScore() {
+  const initials = initialsInput.value.trim(); // Get initials input from the user and remove extra spaces
+  if (initials !== "") { // Check if initials are not empty
+    const highScores = JSON.parse(localStorage.getItem("highScores")) || []; // Retrieve high scores from local storage or create an empty array
+    const newScore = { initials, score }; // Create a new score object with initials and score
+    highScores.push(newScore); // Add the new score to the high scores array
+    localStorage.setItem("highScores", JSON.stringify(highScores)); // Store the updated high scores in local storage
+    window.location.href = "highscores.html"; // Redirect the user to the highscores page
   }
-// Event listeners
-// event listener for start button click
-startButton.addEventListener('click', startQuiz);
-// event listener for submit button click
-submitButton.addEventListener('click', saveHighScore);
+}
 
-// Load high scores page when "View Highscores" link is clicked
-highScoresLink.addEventListener('click', function(event) {
-  event.preventDefault(); // event.preventDefault(); stops the default form submission action, 
-                          // which is refreshing the page when a user submits a form
-  window.location.href = 'highscores.html';//// Use the extracted HTML to navigate to a different page
+// Event listeners for quiz start, submitting high score, and viewing high scores
+startButton.addEventListener("click", startQuiz); // Event listener for starting the quiz
+submitButton.addEventListener("click", saveHighScore); // Event listener for submitting high score
+highScoresLink.addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the default behavior of the high scores link (e.g., navigating to a new page)
+  window.location.href = "highscores.html"; // Redirect the user to the highscores page when the link is clicked
 });
 
 
