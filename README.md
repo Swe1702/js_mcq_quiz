@@ -48,12 +48,9 @@ To use the Coding Quiz Challenge, follow these steps:
 - To clear the highscores, click on the "Clear Highscores" button.
 
 ## Screenshots
-![image]
+![image](https://github.com/Swe1702/js_mcq_quiz/assets/140180513/ecf366c9-2237-4836-813a-490810472bf9)
 
 https://github.com/Swe1702/js_mcq_quiz/assets/140180513/16456856-ed16-46d3-a0f4-a6fe4998fcff
-
-(https://github.com/Swe1702/js_mcq_quiz/assets/140180513/ecf366c9-2237-4836-813a-490810472bf9)
-
 
 
 ## Built With
